@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularjsAgilApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <html ng-app="app">
+    <head>
+
+
+
+      <section class="body container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Git Hub</h3>
+                </div>
+                <center>
+                <p><b>Usuario</b></p>
+                <input type="text" name="username" id="username" placeholder="Nombre de usuario" ng-model="username">
+                <br>
+                <br>
+                <p><b>Contrasena<b/></p>
+                <input type="Password" name="Password" id="pass" placeholder="Contrasena">
+                <br>
+                <br>
+                <button id="login" ng-controller="gitHubDataController" ng-click="usuarioLogeado()"> Login</button>
+            </center>
+            </div>
+        </div>
+    </section>
+
+
+<div id="pagina_central" style="visibility: visible; display: block; ..">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GitHub</title>
+
+        <link rel="stylesheet" href="lib/custombootstrap.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="lib/octicons/octicons/octicons.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="lib/site.css" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body  ng-controller="gitHubDataController">
+
+        <div class="container">
+                <h1 class="text-center">
+                    <span ng-hide="repoData"/>Loading...</span>
+                    <span />{{userData.name}}</span>
+                    <br>
+                    <a href="{{userData.html_url}}" class="btn btn-default">
+                        <span class="octicon octicon-octoface"></span>
+                        {{userData.login}}
+                    </a>
+<section class="col-md-2">
+<img ng-src="{{userData.avatar_url}}" height="75" width="75"/>
+                </h1>
+      <small>
+        <br>
+        <br>
+          <dd><img ng-src="images/grupos.png" height="15" width="15"/> {{userData.company}}</dd>
+          <dd><img ng-src="images/ubicacion.png" height="15" width="15"/> {{userData.location}}</dd>
+          <dd><img ng-src="images/clock.png" height="15" width="15"/> Joined on {{userData.created_at | date:'dd­ MMMM ­yyyy'}}</dd>
+      </small>
+      </section>
+      <section class="col-md-10">
+            <div class=class="col-md-10">
+                <div class="panel-heading">
+
+                    <form class="form-inline">
+                        <span>
+                            <h4>Repos <span class="badge">{{repoData.length}}</span>
+                            <input ng-model="searchText" placeholder="Find a repo..." class="form-control input-sm">
+                            </h4>
+                        </span>
+                    </form>
+
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div ng-repeat="repo in repoData | filter:searchText  | orderBy:predicate:reverse" class="list-group-item ">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h4>
+                                        <small>
+                                            <span ng-if="repo.fork" class="octicon octicon-repo-forked"></span>
+                                            <span ng-if="!repo.fork" class="octicon octicon-repo"></span>
+                                        </small>
+                                        <a href="{{repo.html_url}}" target="_blank" >
+                                            {{repo.name}}
+                                        </a>
+                                        <small>{{repo.description}}</small>
+                                    </h4>
+
+                                    <small>
+                                        <a href="{{repo.homepage}}" class="">
+                                            <i class="fa fa-link"></i> WebPage
+                                        </a>
+
+                                    </small>
+
+                                </div>
+                              <div class="col-md-2">
+                              <dl class="dl-horizontal">
+                              {{repo.language}}
+                              <br>
+                             <img ng-src="images/star.png" height="15" width="15"/>{{repo.stargazers_count}}<br>
+                             <img ng-src="images/ojo.png" height="15" width="15"/>{{repo.watchers_count}}<br>
+                             <img ng-src="images/fork.jpeg" height="15" width="15"/>{{repo.forks_count}}
+                              </dl>
+                              </div>
+
+
+                                <div class="col-md-8">
+                                    <dl class="dl-horizontal">
+                                      <dt>Last Updated:</dt>
+                                      <dd>{{repo.updated_at | date : short : timezone}}</dd>
+                                      <dt>Created:</dt>
+                                      <dd>{{repo.created_at| date : short : timezone}}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </section>
+            </div>
+
+
+
+        <script src="lib/angular/angular.min.js" charset="utf-8"></script>
+        <script src="app/app.js" charset="utf-8"></script>
+
+</div>
+
+</html>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/gif.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
